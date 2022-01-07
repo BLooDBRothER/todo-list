@@ -1,12 +1,29 @@
+import uniqid from 'uniqid';
 import addButton from "../Assets/add.svg";
 
-const Form = () => {
+const Form = ({inputText, setInputText, todoList, setTodoList}) => {
+    const updateInputText = (e) => {
+        setInputText(e.target.value);
+    }
+    const addToTodoList = (e) => {
+        e.preventDefault();
+        const id = uniqid();
+        setTodoList([...todoList, {
+            id,
+            value: inputText,
+            isCompleted: false
+        }]);
+    }
+    const handleEnterEvent = (e) => {
+        if(e.code !== "Enter") return;
+        addToTodoList(e);
+    }
     return(
         <div className="form-container">
             <form action="#">
                 <div className="input-container">
-                    <input type="text" className="input-text" />
-                    <img src={addButton} className="add-button" alt="Add List" />
+                    <input type="text" className="input-text" onChange={updateInputText} onKeyPress={handleEnterEvent}/>
+                    <img src={addButton} className="add-button" onClick={addToTodoList} alt="Add List" />
                 </div>
                 <div className="dropdown-container">
                     <select name="todo-status" className="todo-status">
