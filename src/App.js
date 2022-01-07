@@ -70,6 +70,7 @@ function App(){
                     setIsListAdded={setIsListAdded}
                 />
                 <TodoList 
+                    todoList={todoList}
                     filterTodoList={filterTodoList}
                     setTodoList={setTodoList}
                     listsRef={listsRef}
