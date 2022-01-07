@@ -1,3 +1,5 @@
+import React from "react";
+
 import completedIcon from "../Assets/completed.svg";
 import deleteIcon from "../Assets/delete.svg";
 
