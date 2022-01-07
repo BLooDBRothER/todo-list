@@ -2,6 +2,7 @@ body{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    min-height: 100vh;
 }
 
 :root{
@@ -12,13 +13,24 @@ body{
     --white: #f1faee;
 }
 
-html{
+html, body{
+    height: 100vh;
     background-color: var(--primary-color);
+    overflow: hidden;
+}
+
+.main-container{
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 12% 12% 75%;
+
 }
 
 .heading{
-    margin: 2rem 0 5rem 0;
-    text-align: center;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--secondary-color);
 }
 
@@ -74,6 +86,65 @@ form{
     font-size: inherit;
 }
 
+/* Common Todo List style */
+
+.todo-container{
+    margin: 0 auto;
+    width: 50%;
+    display: grid;
+    grid-template-rows: 10% 90%;
+}
+
+.lists{
+    width: 100%;
+    overflow: auto;
+}
+
+.list{
+    display: flex;
+    align-items: center;
+    background-color: var(--extra-1);
+    color: var(--white);
+    height: 30px;
+    border-radius: .6rem;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+.list-value{
+    flex: 1;
+    margin: 0;
+    padding: .3rem 1rem;
+    font-size: 1.2rem;
+}
+
 .list-ic{
+    display: flex;
+    align-items: center;
+}
+
+.list-ic img:first-child{
+    border-left: 1px solid var(--white);
+    border-right: 1px solid var(--white);
+}
+
+.list-ic > img{
+    padding: 5px 1rem;
+    height: 20px;
+    background-color: var(--secondary-color);
     width: 1.4rem;
+    cursor: pointer;
+}
+
+.list-ic > img:hover{
+    background-color: var(--accent);
+}
+
+/* Todo List Completed style */
+.list.true{
+    background-color: rgba(53, 53, 53, 0.8);
+}
+
+.list.true .list-value{
+    text-decoration: line-through;
 }
