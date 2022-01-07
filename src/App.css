@@ -96,9 +96,14 @@ form{
     grid-template-rows: 10% 90%;
 }
 
+.todo-title{
+    color: var(--secondary-color);
+}
+
 .lists{
     width: 100%;
     overflow: auto;
+    padding-right: .5rem;
 }
 
 .list{
@@ -151,3 +156,21 @@ form{
 .list.true .list-value{
     text-decoration: line-through;
 }
+
+.lists::-webkit-scrollbar {
+    width: 5px;
+}
+
+.lists::-webkit-scrollbar-track {
+    background: var(--white);
+  }
+  
+  /* Handle */
+.lists::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+  }
+  
+  /* Handle on hover */
+.lists::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+  }

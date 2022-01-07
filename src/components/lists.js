@@ -1,13 +1,14 @@
 import ListItem from "./list-item";
 
-const TodoList = ({filetTodoList, setTodoList}) => {
+const TodoList = ({filterTodoList, setTodoList, listsRef}) => {
     return(
         <div className="todo-container">
-            <h2>Your List Item</h2>
+            <h2 className="todo-title">Your List Item</h2>
             <div className="lists">
-                {filetTodoList.map((todo) => (
-                    <ListItem key={todo.id} todo={todo} todoList={filetTodoList} setTodoList={setTodoList}/>
+                {filterTodoList.map((todo) => (
+                    <ListItem key={todo.id} todo={todo} todoList={filterTodoList} setTodoList={setTodoList}/>
                 ))}
+                <div ref={listsRef}></div>
             </div>
         </div>
 

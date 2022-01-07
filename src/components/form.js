@@ -1,20 +1,21 @@
 import uniqid from 'uniqid';
 import addButton from "../Assets/add.svg";
 
-const Form = ({inputText, setInputText, todoList, setTodoList, setStatus}) => {
+const Form = ({inputText, setInputText, todoList, setTodoList, setStatus, setIsListAdded}) => {
     const updateInputText = (e) => {
         setInputText(e.target.value);
     }
     const addToTodoList = (e) => {
         e.preventDefault();
+        if(inputText === "") return;
         const id = uniqid();
         setTodoList([...todoList, {
             id,
             value: inputText,
             isCompleted: false
         }]);
+        setIsListAdded(true);
         setInputText("");
-        
     }
     const handleEnterEvent = (e) => {
         if(e.code !== "Enter" && e.code !== "NumpadEnter") return;

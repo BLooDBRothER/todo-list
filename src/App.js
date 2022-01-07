@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Form from "./components/form";
 import Welcome from "./components/header";
@@ -7,11 +7,13 @@ import TodoList from "./components/lists";
 function App(){
     const [inputText, setInputText] = useState("");
     const [todoList, setTodoList] = useState([]);
-    const [filetTodoList, setFilterTodoList] = useState([]);
+    const [filterTodoList, setFilterTodoList] = useState([]);
+    const [isListAdded, setIsListAdded] = useState(false);
     const [status, setStatus] = useState("all");
 
+    const listsRef = useRef(null);
+
     const handleStatus = () => {
-        console.log(status);
         switch(status){
             case "completed":
                 setFilterTodoList(todoList.filter(list => list.isCompleted));
@@ -24,7 +26,32 @@ function App(){
         }
     }
     
-    useEffect(handleStatus, [todoList, status]);
+    const scrollToBottom = () => {
+        console.log(listsRef.current);
+        listsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+
+    const saveDataToLocalStorage = () => {
+        localStorage.setItem("todoList", JSON.stringify(todoList));
+    }
+
+    const getDataFromLocalStorage = () => {
+        if(!localStorage.getItem("todoList")) return;
+        setTodoList(JSON.parse(localStorage.getItem("todoList")));
+    }
+
+    useEffect(getDataFromLocalStorage, []);
+    
+    useEffect(() => {
+        handleStatus();
+        saveDataToLocalStorage();
+    }, [todoList, status]);
+
+    useEffect(() => {
+        if(!isListAdded) return;
+        scrollToBottom();
+        setIsListAdded(false);
+    }, [filterTodoList]);
 
     
 
@@ -38,10 +65,12 @@ function App(){
                     todoList={todoList}
                     setTodoList={setTodoList}
                     setStatus={setStatus}
+                    setIsListAdded={setIsListAdded}
                 />
                 <TodoList 
-                    filetTodoList={filetTodoList}
+                    filterTodoList={filterTodoList}
                     setTodoList={setTodoList}
+                    listsRef={listsRef}
                 />
             </div>
         </React.StrictMode>
