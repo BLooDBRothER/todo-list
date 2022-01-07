@@ -13,6 +13,7 @@ const Form = ({inputText, setInputText, todoList, setTodoList}) => {
             value: inputText,
             isCompleted: false
         }]);
+        setInputText("");
     }
     const handleEnterEvent = (e) => {
         if(e.code !== "Enter") return;
@@ -22,7 +23,7 @@ const Form = ({inputText, setInputText, todoList, setTodoList}) => {
         <div className="form-container">
             <form action="#">
                 <div className="input-container">
-                    <input type="text" className="input-text" onChange={updateInputText} onKeyPress={handleEnterEvent}/>
+                    <input type="text" value={inputText} className="input-text" onChange={updateInputText} onKeyPress={handleEnterEvent}/>
                     <img src={addButton} className="add-button" onClick={addToTodoList} alt="Add List" />
                 </div>
                 <div className="dropdown-container">
