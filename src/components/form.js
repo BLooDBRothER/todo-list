@@ -16,7 +16,7 @@ const Form = ({inputText, setInputText, todoList, setTodoList}) => {
         setInputText("");
     }
     const handleEnterEvent = (e) => {
-        if(e.code !== "Enter") return;
+        if(e.code !== "Enter" && e.code !== "NumpadEnter") return;
         addToTodoList(e);
     }
     return(
