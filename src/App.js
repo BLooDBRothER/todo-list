@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./App.css";
 import Form from "./components/form";
 import Welcome from "./components/header";
@@ -12,9 +12,7 @@ function App(){
     const [isListAdded, setIsListAdded] = useState(false);
     const [status, setStatus] = useState("all");
 
-    const listsRef = useRef(null);
-
-    const handleStatus = () => {
+    const handleStatus = (status, todoList) => {
         switch(status){
             case "completed":
                 setFilterTodoList(todoList.filter(list => list.isCompleted));
@@ -28,11 +26,13 @@ function App(){
     }
     
     const scrollToBottom = () => {
-        console.log(listsRef.current);
-        listsRef.current.scrollIntoView({ behavior: "smooth" });
+        if(!isListAdded) return;
+        const list_container = document.querySelector(".lists").lastChild;
+        list_container.scrollIntoView({ behavior: "smooth" });
+        setIsListAdded(false);
     }
 
-    const saveDataToLocalStorage = () => {
+    const saveDataToLocalStorage = (todoList) => {
         localStorage.setItem("todoList", JSON.stringify(todoList));
     }
 
@@ -44,16 +44,11 @@ function App(){
     useEffect(getDataFromLocalStorage, []);
     
     useEffect(() => {
-        handleStatus();
-        saveDataToLocalStorage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        handleStatus(status, todoList);
+        saveDataToLocalStorage(todoList);
     }, [todoList, status]);
 
-    useEffect(() => {
-        if(!isListAdded) return;
-        scrollToBottom();
-        setIsListAdded(false);
-    }, [filterTodoList]);
+    useEffect(scrollToBottom, [filterTodoList]);
 
     
 
@@ -73,7 +68,6 @@ function App(){
                     todoList={todoList}
                     filterTodoList={filterTodoList}
                     setTodoList={setTodoList}
-                    listsRef={listsRef}
                 />
             </div>
         </React.StrictMode>
