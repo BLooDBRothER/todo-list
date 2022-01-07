@@ -1,7 +1,7 @@
 import uniqid from 'uniqid';
 import addButton from "../Assets/add.svg";
 
-const Form = ({inputText, setInputText, todoList, setTodoList}) => {
+const Form = ({inputText, setInputText, todoList, setTodoList, setStatus}) => {
     const updateInputText = (e) => {
         setInputText(e.target.value);
     }
@@ -14,10 +14,14 @@ const Form = ({inputText, setInputText, todoList, setTodoList}) => {
             isCompleted: false
         }]);
         setInputText("");
+        
     }
     const handleEnterEvent = (e) => {
         if(e.code !== "Enter" && e.code !== "NumpadEnter") return;
         addToTodoList(e);
+    }
+    const handleStatus = (e) => {
+        setStatus(e.target.value);
     }
     return(
         <div className="form-container">
@@ -27,8 +31,8 @@ const Form = ({inputText, setInputText, todoList, setTodoList}) => {
                     <img src={addButton} className="add-button" onClick={addToTodoList} alt="Add List" />
                 </div>
                 <div className="dropdown-container">
-                    <select name="todo-status" className="todo-status">
-                        <option value="All">All</option>
+                    <select name="todo-status" className="todo-status" onChange={handleStatus}>
+                        <option value="all">All</option>
                         <option value="completed">Completed</option>
                         <option value="uncompleted">Uncompleted</option>
                     </select>
