@@ -9,10 +9,71 @@ body{
     --secondary-color: #284b63;
     --accent: #3c6e71;
     --extra-1: #353535;
-    --extra-2: #f1faee;
+    --white: #f1faee;
 }
 
 html{
     background-color: var(--primary-color);
 }
 
+.heading{
+    margin: 2rem 0 5rem 0;
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+form{
+    display: flex;
+}
+
+.input-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-text, .add-button, .todo-status{
+    border: none;
+    outline: none;
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.input-text{
+    height: 30px;
+    padding: 2px .5rem;
+    border-radius: .6rem 0 0 .6rem;
+    font-size: inherit;
+}
+
+.add-button{
+    height: 30px;
+    width: 1rem;
+    cursor: pointer;
+    box-sizing: unset;
+    padding: 2px .8rem;
+    border-radius: 0 .6rem .6rem 0;
+}
+
+.add-button:hover{
+    background-color: var(--extra-1);
+}
+
+.todo-status{
+    margin-left: 2rem;
+    height: 34px;
+    border-radius: .6rem;
+    padding: 2px;
+    font-size: inherit;
+}
+
+.list-ic{
+    width: 1.4rem;
+}
