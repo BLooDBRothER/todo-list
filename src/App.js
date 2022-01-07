@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Form from "./components/form";
@@ -39,12 +40,13 @@ function App(){
         if(!localStorage.getItem("todoList")) return;
         setTodoList(JSON.parse(localStorage.getItem("todoList")));
     }
-
+    
     useEffect(getDataFromLocalStorage, []);
     
     useEffect(() => {
         handleStatus();
         saveDataToLocalStorage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [todoList, status]);
 
     useEffect(() => {
