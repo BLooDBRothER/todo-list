@@ -30,6 +30,7 @@ html, body{
     margin: 0;
     display: flex;
     align-items: center;
+    font-size: clamp(.8rem ,7vw, 2.3rem);
     justify-content: center;
     color: var(--secondary-color);
 }
@@ -38,7 +39,7 @@ html, body{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.4rem;
+    font-size: clamp(.8rem,4vw, 1.4rem);
 }
 
 form{
@@ -59,18 +60,18 @@ form{
 }
 
 .input-text{
-    height: 30px;
-    padding: .5rem 1rem;
+    height: clamp(10px, 5vw, 30px);
+    padding: .5rem clamp(.2rem, 5vw, 1rem);
     border-radius: .6rem 0 0 .6rem;
     font-size: inherit;
 }
 
 .add-button{
-    height: 30px;
+    height: clamp(10px, 5vw, 30px);
     width: 1rem;
     cursor: pointer;
     box-sizing: unset;
-    padding: .5rem 1rem;
+    padding: .5rem clamp(.2rem, 5vw, 1rem);
     border-radius: 0 .6rem .6rem 0;
 }
 
@@ -79,11 +80,11 @@ form{
 }
 
 .todo-status{
-    margin-left: 2rem;
-    height: 30px;
+    margin-left: clamp(.8rem, 5vw, 2rem);
+    height: clamp(10px, 5vw, 30px);
     box-sizing: unset;
     border-radius: .6rem;
-    padding: .5rem 1rem;
+    padding: .5rem clamp(.2rem, 5vw, 1rem);
     font-size: inherit;
 }
 
@@ -123,6 +124,9 @@ form{
     margin: 0;
     padding: .3rem 1rem;
     font-size: 1.2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .list-ic{
@@ -163,14 +167,27 @@ form{
 
 .lists::-webkit-scrollbar-track {
     background: var(--white);
-  }
+}
   
-  /* Handle */
 .lists::-webkit-scrollbar-thumb {
     background: var(--secondary-color);
-  }
+}
   
-  /* Handle on hover */
 .lists::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
-  }
+}
+
+@media (max-width: 800px){
+    .input-text{
+        width: clamp(100px, 35vw, 320px);
+    }
+    .todo-status{
+        width: clamp(80px, 25vw, 180px);
+    }
+
+    .todo-container{
+        width: 80%;
+    }
+
+
+}
