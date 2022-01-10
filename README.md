@@ -2,7 +2,7 @@
 
 This project was created in react.
 
-### [Click here to see the site](todo44-react.netlify.app)
+### [Click here to see the site](https://todo44-react.netlify.app)
 
 ### `To run this project locally`
 
