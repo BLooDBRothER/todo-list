@@ -1,3 +1,4 @@
+import React from 'react';
 import uniqid from 'uniqid';
 import addButton from "../Assets/add.svg";
 

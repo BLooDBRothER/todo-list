@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Welcome = () => {
     return(
         <h1 className="heading">Update your ToDo's Here</h1>
